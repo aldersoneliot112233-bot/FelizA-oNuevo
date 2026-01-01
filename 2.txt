@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>✨ Feliz Año Nuevo 2026</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="message" id="message">
+    Este 2025 no fue perfecto…<br>
+    pero en medio del caos, hubo abrazos.<br>
+    En medio del silencio, hubo risas.<br>
+    En medio de lo incierto, alguien —quizás tú— eligió seguir.<br>
+
+    Fue un año de cicatrices y estrellas.<br>
+    De cafés que se enfriaron mientras pensabas ‘¿para qué?’.<br>
+    Y de noches en las que, sin saberlo, fuiste el ‘por qué’ de alguien más.<br>
+
+    No fue fácil.<br>
+    Pero aquí estás.<br>
+    Y eso, en sí mismo, es algo maravilloso.<br>
+
+    Este reloj marca el final de un año…<br>
+    pero tú —con tu presencia, tu historia, tu existencia—<br>
+    le diste calidez a este 2025.<br>
+
+    Con cariño, para el alma de quienquiera que lea esto. <span class="emoji">🌌</span><br><br> 
+  </div>
+  <div class="clock" id="clock">23:59:50</div>
+  
+  <!-- ... (igual que antes) ... -->
+<div class="new-year" id="newYear" style="display: none;">
+  <div class="main">¡Feliz Año Nuevo!</div>
+  <div class="year">2026</div>
+  <div class="wish">
+    ¡Que este 2026 te traiga<br>
+    éxitos, bendiciones,<br>
+    salud y momentos inolvidables!
+  </div>
+</div>
+<!-- ... -->
+
+<canvas id="fireworksCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; pointer-events: none;"></canvas>
+
+  <script src="js.js"></script>
+</body>
+</html>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #000;
+  color: #f0f4ff;
+  font-family: 'Inter', sans-serif;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 0 20px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(5, 5, 15, 0.98) 0%,
+    rgba(0, 0, 10, 1) 70%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  pointer-events: none;
+  z-index: -1;
+}
+
+.message {
+  font-size: 1.22rem;
+  line-height: 1.55;
+  text-align: center;
+  max-width: 100%;
+  margin-bottom: 2rem;
+  opacity: 0.93;
+  font-weight: 400;
+  color: #e0e7ff;
+  text-shadow: 0 0 6px rgba(100, 130, 200, 0.2);
+  animation: fadeIn 1.8s ease-out;
+  z-index: 10;
+  padding: 0 8px;
+}
+
+.message .emoji {
+  margin-left: 4px;
+}
+
+.clock {
+  font-size: 4.6rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: #fff;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+  /* Brillo principal */
+  text-shadow: 
+    0 0 10px rgba(100, 200, 255, 0.8),
+    0 0 20px rgba(60, 160, 255, 0.7),
+    0 0 35px rgba(20, 100, 230, 0.5),
+    0 0 50px rgba(0, 80, 200, 0.4);
+  /* Animación suave de "respiración" */
+  animation: clockPulse 3s ease-in-out infinite;
+  transform-origin: center;
+}
+
+/* Efecto más dinámico: pulso suave + ligero brillo cambiante */
+@keyframes clockPulse {
+  0%, 100% {
+    transform: scale(1);
+    text-shadow: 
+      0 0 10px rgba(100, 200, 255, 0.8),
+      0 0 20px rgba(60, 160, 255, 0.7),
+      0 0 35px rgba(20, 100, 230, 0.5),
+      0 0 50px rgba(0, 80, 200, 0.4);
+  }
+  50% {
+    transform: scale(1.02);
+    text-shadow: 
+      0 0 15px rgba(130, 220, 255, 1),
+      0 0 28px rgba(80, 180, 255, 0.9),
+      0 0 45px rgba(40, 140, 255, 0.7),
+      0 0 65px rgba(10, 100, 220, 0.5);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 0.93;
+    transform: translateY(0);
+  }
+}
+
+/* ✅ Móviles pequeños */
+@media (max-width: 420px) {
+  .message {
+    font-size: 1.12rem;
+    line-height: 1.5;
+    margin-bottom: 1.6rem;
+  }
+  .clock {
+    font-size: 3.9rem;
+    letter-spacing: 2px;
+  }
+}
+
+/* ✅ Pantallas muy cortas (ej. iPhone SE, Galaxy A) */
+@media (max-height: 640px) {
+  body {
+    padding: 0 16px;
+    justify-content: flex-start;
+    padding-top: 24px;
+  }
+  .message {
+    margin-bottom: 1.3rem;
+  }
+  .clock {
+    margin-top: auto;
+    padding-bottom: 24px;
+  }
+}
+
+/* ✅ Efecto extra: al cambiar cada segundo, brillo intensificado brevemente */
+.clock.blink {
+  animation: clockBlink 0.4s ease-out;
+}
+
+@keyframes clockBlink {
+  0% {
+    text-shadow: 
+      0 0 20px rgba(150, 230, 255, 1),
+      0 0 35px rgba(100, 200, 255, 0.9),
+      0 0 55px rgba(60, 160, 255, 0.8),
+      0 0 80px rgba(30, 120, 255, 0.7);
+    transform: scale(1.03);
+  }
+  100% {
+    text-shadow: 
+      0 0 10px rgba(100, 200, 255, 0.8),
+      0 0 20px rgba(60, 160, 255, 0.7),
+      0 0 35px rgba(20, 100, 230, 0.5),
+      0 0 50px rgba(0, 80, 200, 0.4);
+    transform: scale(1);
+  }
+}
+
+/* === NUEVO: Estilos para el mensaje de Año Nuevo === */
+.new-year {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  color: white;
+  padding: 0 20px;
+  padding-top: 30vh; /* ← ¡AJUSTA ESTE VALOR A TU GUSTO! */
+  pointer-events: none;
+  z-index: 20;
+  background: 
+    radial-gradient(circle at center, rgba(10, 8, 20, 0.8) 0%, rgba(0, 0, 10, 1) 100%),
+    url("image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='3' cy='3' r='0.8' fill='white' opacity='0.15'/%3E%3C/svg%3E");
+  background-size: 100%, 80px 80px;
+}
+
+/* Estrellas parpadeantes sutiles */
+.new-year::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: 
+    radial-gradient(circle at 10% 20%, rgba(255, 215, 0, 0.03) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.02) 0%, transparent 50%);
+  animation: starsPulse 8s infinite alternate;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes starsPulse {
+  0% { opacity: 0.3; }
+  100% { opacity: 0.7; }
+}
+
+/* ¡Feliz Año Nuevo! */
+.main {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.8rem;
+  color: #ffd700;
+  text-shadow: 
+    0 0 12px rgba(255, 215, 0, 0.7),
+    0 0 20px rgba(255, 165, 0, 0.4);
+  margin-bottom: 0.3rem;
+  opacity: 0;
+  animation: fadeInBounce 1s ease-out forwards;
+}
+
+/* 2026 - el protagonista */
+.year {
+  font-size: 4.6rem;
+  font-weight: 800;
+  margin-bottom: 1.2rem;
+  letter-spacing: 2px;
+  opacity: 0;
+  animation: yearExplode 1.2s ease-out 0.4s forwards;
+  position: relative;
+}
+
+/* Textura dorada REALISTA */
+.year {
+  background: linear-gradient(45deg, #f5d107, #ffbf00, #ff9800, #ffd700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 
+    0 0 10px rgba(255, 215, 0, 0.5),
+    0 0 20px rgba(255, 215, 0, 0.3);
+  filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.6));
+}
+
+/* Brillo eterno suave */
+.year::after {
+  content: "";
+  position: absolute;
+  top: -10px; left: -10px;
+  right: -10px; bottom: -10px;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.2), transparent 70%);
+  border-radius: 50%;
+  z-index: -1;
+  animation: glowPulse 3s infinite alternate;
+}
+
+/* Mensaje de deseos */
+.wish {
+  font-size: 1.4rem;
+  line-height: 1.5;
+  opacity: 0;
+  max-width: 100%;
+  animation: fadeIn 1s ease-out 1.2s forwards;
+}
+
+/* === ANIMACIONES === */
+@keyframes fadeIn {
+  to { opacity: 0.95; }
+}
+
+@keyframes fadeInBounce {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+  }
+  60% {
+    transform: translateY(-5px) scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes yearExplode {
+  0% {
+    opacity: 0;
+    transform: scale(0.2) rotate(-10deg);
+    text-shadow: 0 0 0 rgba(0,0,0,0);
+  }
+  50% {
+    transform: scale(1.1) rotate(2deg);
+    text-shadow: 
+      0 0 20px rgba(255, 215, 0, 1),
+      0 0 40px rgba(255, 165, 0, 0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+    text-shadow: 
+      0 0 15px rgba(255, 215, 0, 0.9),
+      0 0 30px rgba(255, 165, 0, 0.6);
+  }
+}
+
+@keyframes glowPulse {
+  0% { opacity: 0.4; }
+  100% { opacity: 0.8; }
+}
+
+/* === AJUSTES MÓVIL === */
+@media (max-width: 420px) {
+  .main { font-size: 2.4rem; }
+  .year { font-size: 3.8rem; }
+  .wish { font-size: 0.7rem; }
+}
+
+@media (max-height: 600px) {
+  .year { font-size: 3.4rem; margin-bottom: 1rem; }
+  .wish { font-size: 0.7rem; }
+}
+
+/* === FONDO DEL CANVAS DE FUEGOS ARTIFICIALES === */
+
+
+
+// Simulación: partimos de 23:59:50 y contamos hasta 00:00:00
+let simulatedTime = {
+  hours: 23,
+  minutes: 59,
+  seconds: 50
+};
+
+const clockEl = document.getElementById('clock');
+const messageEl = document.getElementById('message');
+
+function formatTime(h, m, s) {
+  return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+}
+
+function updateTime() {
+  simulatedTime.seconds++;
+  if (simulatedTime.seconds === 60) {
+    simulatedTime.seconds = 0;
+    simulatedTime.minutes++;
+    if (simulatedTime.minutes === 60) {
+      simulatedTime.minutes = 0;
+      simulatedTime.hours = (simulatedTime.hours + 1) % 24;
+    }
+  }
+
+  const timeStr = formatTime(simulatedTime.hours, simulatedTime.minutes, simulatedTime.seconds);
+  clockEl.textContent = timeStr;
+
+  // ✨ Efecto visual épico cada segundo
+  clockEl.classList.add('blink');
+  setTimeout(() => {
+    clockEl.classList.remove('blink');
+  }, 400);
+
+  if (simulatedTime.hours === 0 && simulatedTime.minutes === 0 && simulatedTime.seconds === 0) {
+    setTimeout(launchNewYear, 300);
+  } else {
+    setTimeout(updateTime, 1000);
+  }
+}
+
+// ... (todo el código anterior igual hasta launchNewYear) ...
+
+function launchNewYear() {
+  // Ocultar mensaje y reloj
+  document.getElementById('message').style.opacity = '0';
+  document.getElementById('clock').style.opacity = '0';
+
+  // Mostrar el contenedor de Año Nuevo
+  const newYearEl = document.getElementById('newYear');
+  newYearEl.style.display = 'flex';
+
+  // Opcional: añadir efecto extra a "2026" al final
+  setTimeout(() => {
+    const yearEl = document.getElementById('word4');
+    yearEl.style.animation = 'fadeInUpPop 1.2s ease-out'; // solo una vez
+  }, 25500);
+
+  // 🚫 ¡NADA MÁS! → NO HAY CÓDIGO QUE LO OCULTE.
+  // Se queda en pantalla... PARA SIEMPRE. 💛
+}
+
+// ... (updateTime sigue igual) ...
+// === FUEGOS ARTIFICIALES ÉPICOS ===
+let canvas, ctx;
+let fireworks = [];
+let hue = 0;
+let isFireworksActive = false;
+
+function initFireworks() {
+  if (isFireworksActive) return;
+  isFireworksActive = true;
+
+  canvas = document.getElementById('fireworksCanvas');
+  if (!canvas) return;
+  ctx = canvas.getContext('2d');
+  
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // 🔥 Lanzar cohetes cada 2 segundos durante 5 minutos (300 segundos = 150 lanzamientos)
+  let launchCount = 0;
+  const totalLaunches = 150; // 300s / 2s = 150
+
+  const launchInterval = setInterval(() => {
+    if (launchCount >= totalLaunches) {
+      clearInterval(launchInterval);
+      return;
+    }
+
+    // Lanzar 1 o 2 cohetes
+    const numRockets = Math.random() > 0.4 ? 1 : 2;
+    for (let i = 0; i < numRockets; i++) {
+      setTimeout(() => {
+        createFirework();
+      }, i * 300); // pequeño delay entre cohetes
+    }
+
+    launchCount++;
+  }, 2000); // cada 2 segundos
+
+  // Animación principal
+  function animate() {
+    if (!isFireworksActive) return;
+    requestAnimationFrame(animate);
+    
+    // Fundido muy suave (para no borrar partículas rápido)
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    fireworks = fireworks.filter(fw => {
+      fw.update();
+      fw.draw(ctx);
+      return !fw.isDead;
+    });
+  }
+
+  animate();
+}
+
+class Firework {
+  constructor() {
+    this.x = 50 + Math.random() * (canvas.width - 100);
+    this.y = canvas.height + 20;
+    this.vy = -10 - Math.random() * 5; // más velocidad
+    this.ay = 0.1; // desaceleración suave
+    this.hue = hue;
+    hue = (hue + 50) % 360;
+    this.trail = [];
+    this.maxTrail = 15;
+    this.exploded = false;
+    this.isDead = false;
+    this.particles = [];
+    
+    // Altura de explosión: 70% desde abajo → 30% desde arriba
+    this.explodeAtY = canvas.height * 0.3;
+  }
+
+  update() {
+    if (this.exploded) {
+      this.particles.forEach(p => p.update());
+      this.particles = this.particles.filter(p => p.life > 0);
+      if (this.particles.length === 0) {
+        this.isDead = true;
+      }
+    } else {
+      this.vy += this.ay;
+      this.y += this.vy;
+      
+      this.trail.push({x: this.x, y: this.y});
+      if (this.trail.length > this.maxTrail) {
+        this.trail.shift();
+      }
+      
+      // ¡Explotar a 70% de la pantalla!
+      if (this.y <= this.explodeAtY) {
+        this.explode();
+      }
+    }
+  }
+
+  explode() {
+    this.exploded = true;
+    const particleCount = 300 + Math.random() * 100; // ¡300-400 partículas!
+    for (let i = 0; i < particleCount; i++) {
+      this.particles.push(new Particle(this.x, this.y, this.hue));
+    }
+  }
+
+  draw(ctx) {
+    if (this.exploded) {
+      this.particles.forEach(p => p.draw(ctx));
+    } else {
+      // Rastro más brillante
+      for (let i = 0; i < this.trail.length; i++) {
+        const point = this.trail[i];
+        const alpha = i / this.trail.length;
+        const radius = alpha * 3 + 1;
+        ctx.beginPath();
+        ctx.arc(point.x, point.y, radius, 0, Math.PI * 2);
+        ctx.fillStyle = `hsla(${this.hue}, 100%, ${80 - alpha * 30}%, ${alpha * 0.8})`;
+        ctx.fill();
+      }
+      
+      // Cabeza del cohete: ¡más brillante!
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, 4, 0, Math.PI * 2);
+      ctx.fillStyle = '#ffffff';
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, 6, 0, Math.PI * 2);
+      ctx.fillStyle = `hsla(${this.hue}, 100%, 70%, 0.9)`;
+      ctx.fill();
+    }
+  }
+}
+
+class Particle {
+  constructor(x, y, hue) {
+    this.x = x;
+    this.y = y;
+    this.hue = hue + (Math.random() - 0.5) * 40;
+    this.vx = (Math.random() - 0.5) * 16; // más velocidad
+    this.vy = (Math.random() - 0.5) * 16 - 8;
+    this.gravity = 0.18;
+    this.friction = 0.96;
+    this.life = 150;
+    this.maxLife = 150;
+    this.radius = Math.random() * 2 + 1; // más grande
+  }
+
+  update() {
+    this.vx *= this.friction;
+    this.vy += this.gravity;
+    this.x += this.vx;
+    this.y += this.vy;
+    this.life--;
+  }
+
+  draw(ctx) {
+    const lifePct = this.life / this.maxLife;
+    const alpha = lifePct * lifePct * 0.9; // más brillo al inicio
+    const size = this.radius * (0.5 + lifePct * 0.8);
+    
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, size, 0, Math.PI * 2);
+    ctx.fillStyle = `hsla(${this.hue}, 100%, 80%, ${alpha})`;
+    ctx.fill();
+    
+    // ¡Destello extra!
+    if (lifePct > 0.8) {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, size * 1.8, 0, Math.PI * 2);
+      ctx.fillStyle = `hsla(${this.hue}, 100%, 90%, ${alpha * 0.5})`;
+      ctx.fill();
+    }
+  }
+}
+
+function createFirework() {
+  fireworks.push(new Firework());
+}
+
+function launchNewYear() {
+  document.getElementById('message').style.opacity = '0';
+  document.getElementById('clock').style.opacity = '0';
+  document.getElementById('newYear').style.display = 'flex';
+  
+  // Esperar un poco para que el texto aparezca primero
+  setTimeout(() => {
+    initFireworks();
+  }, 800);
+}
+
+
+
+updateTime();

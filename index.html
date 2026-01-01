@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>✨ Feliz Año Nuevo 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Antes de 00:00:00 -->
+  <div class="message" id="message">
+    Este 2025 no fue perfecto…<br>
+    pero en medio del caos, hubo abrazos.<br>
+    En medio del silencio, hubo risas.<br>
+    En medio de lo incierto, alguien —quizás tú— eligió seguir.<br>
+
+    Fue un año de cicatrices y estrellas.<br>
+    De cafés que se enfriaron mientras pensabas ‘¿para qué?’.<br>
+    Y de noches en las que, sin saberlo, fuiste el ‘por qué’ de alguien más.<br>
+
+    No fue fácil.<br>
+    Pero aquí estás.<br>
+    Y eso, en sí mismo, es algo maravilloso.<br>
+
+    Este reloj marca el final de un año…<br>
+    pero tú —con tu presencia, tu historia, tu existencia—<br>
+    le diste calidez a este 2025.<br>
+
+    Con cariño, de mi para usted. <span class="emoji">🌌</span>
+  </div>
+  <div class="clock" id="clock">23:59:50</div>
+
+  <!-- Después de 00:00:00 -->
+  <div class="new-year" id="newYear" style="display: none;">
+    <div class="main">¡Feliz Año Nuevo!</div>
+    <div class="year">2026</div>
+    <div class="wish">
+      Que este año te regale<br>
+      calma, motivos para sonreír…<br>
+      y el recuerdo constante<br>
+      de lo valiosa que eres.
+    </div>
+  </div>
+
+  <!-- Canvas de fuegos (siempre detrás) -->
+  <canvas id="fireworksCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none;"></canvas>
+
+  <script src="js.js"></script>
+</body>
+</html>

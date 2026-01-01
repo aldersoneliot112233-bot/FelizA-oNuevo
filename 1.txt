@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>✨ Feliz Año Nuevo 2026</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="message" id="message">
+    El 2025 no fue perfecto…<br>
+    pero en medio del caos, hubo abrazos.<br>
+    En medio del silencio, hubo risas.<br>
+    En medio de lo incierto, alguien —quizás tú— eligió seguir.<br>
+
+    Fue un año de cicatrices y estrellas.<br>
+    De cafés que se enfriaron mientras pensabas ‘¿para qué?’.<br>
+    Y de noches en las que, sin saberlo, fuiste el ‘por qué’ de alguien más.<br>
+
+    No fue fácil.<br>
+    Pero aquí estás.<br>
+    Y eso, en sí mismo, es algo maravilloso.<br>
+
+    Este reloj marca el final de un año…<br>
+    pero tú —con tu presencia, tu historia, tu existencia—<br>
+    le diste calidez a este 2025.<br>
+
+    Con cariño, para el alma de quienquiera que lea esto. <span class="emoji">🌌</span><br><br> 
+  </div>
+  <div class="clock" id="clock">23:59:50</div>
+  
+
+  <script src="js.js"></script>
+</body>
+</html>
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #000;
+  color: #f0f4ff;
+  font-family: 'Inter', sans-serif;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 0 20px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(5, 5, 15, 0.98) 0%,
+    rgba(0, 0, 10, 1) 70%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  pointer-events: none;
+  z-index: -1;
+}
+
+.message {
+  font-size: 1.22rem;
+  line-height: 1.55;
+  text-align: center;
+  max-width: 100%;
+  margin-bottom: 2rem;
+  opacity: 0.93;
+  font-weight: 400;
+  color: #e0e7ff;
+  text-shadow: 0 0 6px rgba(100, 130, 200, 0.2);
+  animation: fadeIn 1.8s ease-out;
+  z-index: 10;
+  padding: 0 8px;
+}
+
+.message .emoji {
+  margin-left: 4px;
+}
+
+.clock {
+  font-size: 4.6rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: #fff;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+  /* Brillo principal */
+  text-shadow: 
+    0 0 10px rgba(100, 200, 255, 0.8),
+    0 0 20px rgba(60, 160, 255, 0.7),
+    0 0 35px rgba(20, 100, 230, 0.5),
+    0 0 50px rgba(0, 80, 200, 0.4);
+  /* Animación suave de "respiración" */
+  animation: clockPulse 3s ease-in-out infinite;
+  transform-origin: center;
+}
+
+/* Efecto más dinámico: pulso suave + ligero brillo cambiante */
+@keyframes clockPulse {
+  0%, 100% {
+    transform: scale(1);
+    text-shadow: 
+      0 0 10px rgba(100, 200, 255, 0.8),
+      0 0 20px rgba(60, 160, 255, 0.7),
+      0 0 35px rgba(20, 100, 230, 0.5),
+      0 0 50px rgba(0, 80, 200, 0.4);
+  }
+  50% {
+    transform: scale(1.02);
+    text-shadow: 
+      0 0 15px rgba(130, 220, 255, 1),
+      0 0 28px rgba(80, 180, 255, 0.9),
+      0 0 45px rgba(40, 140, 255, 0.7),
+      0 0 65px rgba(10, 100, 220, 0.5);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 0.93;
+    transform: translateY(0);
+  }
+}
+
+/* ✅ Móviles pequeños */
+@media (max-width: 420px) {
+  .message {
+    font-size: 1.12rem;
+    line-height: 1.5;
+    margin-bottom: 1.6rem;
+  }
+  .clock {
+    font-size: 3.9rem;
+    letter-spacing: 2px;
+  }
+}
+
+/* ✅ Pantallas muy cortas (ej. iPhone SE, Galaxy A) */
+@media (max-height: 640px) {
+  body {
+    padding: 0 16px;
+    justify-content: flex-start;
+    padding-top: 24px;
+  }
+  .message {
+    margin-bottom: 1.3rem;
+  }
+  .clock {
+    margin-top: auto;
+    padding-bottom: 24px;
+  }
+}
+
+/* ✅ Efecto extra: al cambiar cada segundo, brillo intensificado brevemente */
+.clock.blink {
+  animation: clockBlink 0.4s ease-out;
+}
+
+@keyframes clockBlink {
+  0% {
+    text-shadow: 
+      0 0 20px rgba(150, 230, 255, 1),
+      0 0 35px rgba(100, 200, 255, 0.9),
+      0 0 55px rgba(60, 160, 255, 0.8),
+      0 0 80px rgba(30, 120, 255, 0.7);
+    transform: scale(1.03);
+  }
+  100% {
+    text-shadow: 
+      0 0 10px rgba(100, 200, 255, 0.8),
+      0 0 20px rgba(60, 160, 255, 0.7),
+      0 0 35px rgba(20, 100, 230, 0.5),
+      0 0 50px rgba(0, 80, 200, 0.4);
+    transform: scale(1);
+  }
+}
+
+
+// Simulación: partimos de 23:59:50 y contamos hasta 00:00:00
+let simulatedTime = {
+  hours: 23,
+  minutes: 59,
+  seconds: 50
+};
+
+const clockEl = document.getElementById('clock');
+const messageEl = document.getElementById('message');
+
+function formatTime(h, m, s) {
+  return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+}
+
+function updateTime() {
+  simulatedTime.seconds++;
+  if (simulatedTime.seconds === 60) {
+    simulatedTime.seconds = 0;
+    simulatedTime.minutes++;
+    if (simulatedTime.minutes === 60) {
+      simulatedTime.minutes = 0;
+      simulatedTime.hours = (simulatedTime.hours + 1) % 24;
+    }
+  }
+
+  const timeStr = formatTime(simulatedTime.hours, simulatedTime.minutes, simulatedTime.seconds);
+  clockEl.textContent = timeStr;
+
+  // ✨ Efecto visual épico cada segundo
+  clockEl.classList.add('blink');
+  setTimeout(() => {
+    clockEl.classList.remove('blink');
+  }, 400);
+
+  if (simulatedTime.hours === 0 && simulatedTime.minutes === 0 && simulatedTime.seconds === 0) {
+    setTimeout(launchNewYear, 300);
+  } else {
+    setTimeout(updateTime, 1000);
+  }
+}
+
+function launchNewYear() {
+  messageEl.style.opacity = '0';
+  clockEl.style.opacity = '0';
+  setTimeout(() => {
+    document.body.innerHTML = `
+      <div style="position:fixed; inset:0; background:#000; display:flex; justify-content:center; align-items:center; flex-direction:column; color:#fff; font-family:'Inter',sans-serif; text-align:center; padding:20px; font-size:1.8rem; line-height:1.4;">
+        ¡FELIZ AÑO NUEVO!<br>
+        <span style="font-size:2.4rem; margin:0.6rem 0; color:#ffd700; text-shadow:0 0 20px rgba(255,215,0,0.7);">2026</span>
+        <span style="font-size:1.1rem; opacity:0.85; margin-top:1rem;">Que este año te encuentre más fuerte, más libre y lleno de razones para brillar.</span>
+      </div>
+    `;
+  }, 500);
+}
+
+
+
+updateTime();

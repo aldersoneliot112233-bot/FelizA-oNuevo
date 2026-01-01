@@ -1,0 +1,183 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #000000; /* ✅ Fondo sólido (igual que Navidad) */
+  color: #f0f4ff;
+  font-family: 'Inter', sans-serif;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* === MENSAJE (antes de 00:00:00) === */
+.message {
+  font-size: 1.22rem;
+  line-height: 1.55;
+  text-align: center;
+  max-width: 100%;
+  margin-bottom: 2rem;
+  opacity: 0.93;
+  color: #e0e7ff;
+  text-shadow: 0 0 6px rgba(100, 130, 200, 0.2);
+  animation: fadeIn 1.8s ease-out;
+}
+
+.message .emoji {
+  margin-left: 4px;
+}
+
+/* === RELOJ (antes de 00:00:00) === */
+.clock {
+  font-size: 4.6rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: #fff;
+  text-align: center;
+  text-shadow: 
+    0 0 10px rgba(100, 200, 255, 0.8),
+    0 0 20px rgba(60, 160, 255, 0.7),
+    0 0 35px rgba(20, 100, 230, 0.5),
+    0 0 50px rgba(0, 80, 200, 0.4);
+  animation: clockPulse 3s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 0.93; transform: translateY(0); }
+}
+
+@keyframes clockPulse {
+  0%, 100% {
+    transform: scale(1);
+    text-shadow: 
+      0 0 10px rgba(100, 200, 255, 0.8),
+      0 0 20px rgba(60, 160, 255, 0.7),
+      0 0 35px rgba(20, 100, 230, 0.5),
+      0 0 50px rgba(0, 80, 200, 0.4);
+  }
+  50% {
+    transform: scale(1.02);
+    text-shadow: 
+      0 0 15px rgba(130, 220, 255, 1),
+      0 0 28px rgba(80, 180, 255, 0.9),
+      0 0 45px rgba(40, 140, 255, 0.7),
+      0 0 65px rgba(10, 100, 220, 0.5);
+  }
+}
+
+.clock.blink {
+  animation: clockBlink 0.4s ease-out;
+}
+
+@keyframes clockBlink {
+  0% {
+    text-shadow: 
+      0 0 20px rgba(150, 230, 255, 1),
+      0 0 35px rgba(100, 200, 255, 0.9),
+      0 0 55px rgba(60, 160, 255, 0.8),
+      0 0 80px rgba(30, 120, 255, 0.7);
+    transform: scale(1.03);
+  }
+  100% {
+    text-shadow: 
+      0 0 10px rgba(100, 200, 255, 0.8),
+      0 0 20px rgba(60, 160, 255, 0.7),
+      0 0 35px rgba(20, 100, 230, 0.5),
+      0 0 50px rgba(0, 80, 200, 0.4);
+    transform: scale(1);
+  }
+}
+
+/* === MENSAJE POST-00:00:00 === */
+.new-year {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  color: white;
+  padding: 0 20px;
+  padding-top: 30vh;
+  pointer-events: none;
+  z-index: 20; /* ✅ Siempre encima del canvas */
+}
+
+.main {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.8rem;
+  color: #ffd700;
+  text-shadow: 0 0 12px rgba(255, 215, 0, 0.7);
+  margin-bottom: 0.3rem;
+  opacity: 0;
+  animation: fadeInBounce 1s ease-out forwards;
+}
+
+.year {
+  font-size: 4.6rem;
+  font-weight: 800;
+  margin-bottom: 1.2rem;
+  letter-spacing: 2px;
+  opacity: 0;
+  animation: yearExplode 1.2s ease-out 0.4s forwards;
+  background: linear-gradient(45deg, #ffd700, #ffbf00, #ff9800);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+}
+
+.wish {
+  font-size: 1.4rem;
+  line-height: 1.5;
+  opacity: 0;
+  max-width: 100%;
+  animation: fadeIn 1s ease-out 1.2s forwards;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+}
+
+@keyframes fadeInBounce {
+  0% { opacity: 0; transform: translateY(20px) scale(0.9); }
+  60% { transform: translateY(-5px) scale(1.05); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes yearExplode {
+  0% { opacity: 0; transform: scale(0.2) rotate(-10deg); }
+  50% { transform: scale(1.1) rotate(2deg); text-shadow: 0 0 25px rgba(255, 215, 0, 1); }
+  100% { opacity: 1; transform: scale(1); text-shadow: 0 0 15px rgba(255, 215, 0, 0.8); }
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 420px) {
+  .message { font-size: 1.12rem; margin-bottom: 1.6rem; }
+  .clock { font-size: 3.9rem; letter-spacing: 2px; }
+  .main { font-size: 2.4rem; }
+  .year { font-size: 3.8rem; }
+  .wish { font-size: 1rem; }
+}
+
+@media (max-height: 640px) {
+  body { padding-top: 20px; justify-content: flex-start; }
+  .message { margin-bottom: 1.2rem; }
+  .clock { margin-top: auto; padding-bottom: 20px; }
+}
